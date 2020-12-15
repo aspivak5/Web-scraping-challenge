@@ -1,8 +1,6 @@
-
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup as bs
-import time
 import pandas as pd
 
 def init_browser():
@@ -27,7 +25,8 @@ def scrape_info():
     browser.visit(image_url)
     html = browser.html
     soup = bs(html,"html.parser")
-    featured_image = soup.find("img", class_="thumb")["src"]
+    thread = soup.find("article", class_="carousel_item")
+    featured_image = thread.find("a", class_="button fancybox")["data-fancybox-href"]                                                       
     image_url = "https://www.jpl.nasa.gov/" + featured_image
 
     #scrape for mars facts
