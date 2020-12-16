@@ -4,18 +4,19 @@
         <meta charset="UTF-8">
         <title>Welcome to Mars</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="container">
-            <div class="jumbotron">
-              <h1 class="display-4">Mission to Mars</h1>
-              <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+            <div class="jumbotron" style="background-color:lightgrey; padding-top: 5%; padding-bottom: 5%; margin-left: -75px; margin-right: -75px;">
+              <center><h1 class="display-4"><strong>Mission to Mars</strong></h1>
+              <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></center>
             </div>
         <br>
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Latest Mars News</h2>
-                    <h4>{{mars_data.news_title}}</h4>
+                    <h3><strong>Latest Mars News</strong></h3>
+                    <h5>{{mars_data.news_title}}</h5>
                     <p>{{mars_data.news_text}}</p>
                 </div>
             </div>
