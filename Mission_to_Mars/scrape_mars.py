@@ -6,7 +6,7 @@ import pandas as pd
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 
 def scrape_info():
@@ -27,15 +27,15 @@ def scrape_info():
     soup = bs(html,"html.parser")
     thread = soup.find("article", class_="carousel_item")
     featured_image = thread.find("a", class_="button fancybox")["data-fancybox-href"]                                                       
-    image_url = "https://www.jpl.nasa.gov/" + featured_image
+    featured_image_url = "https://www.jpl.nasa.gov/" + featured_image
 
     #scrape for mars facts
     facts_url = "https://space-facts.com/mars/"
     df = pd.read_html(facts_url)
-    mars_df = df[0]
-    marss_df.columns=["Description", "Mars"]
-    mars_df.set_index("Description", inplace=True)
-    mars_facts = mars_df.to_html("mars_data.html")
+    mars_facts = df[0]
+    mars_facts.columns=["Description", "Mars"]
+    mars_facts.set_index("Description", inplace=True)
+    mars_facts = mars_facts.to_html("mars_data.html")
 
     #scrape for hemispheres
     hemi_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -54,10 +54,9 @@ def scrape_info():
         image_url = "https://astrogeology.usgs.gov/" + soup.find("img", class_="wide-image")["src"]
         hemisphere_image_urls.append({"title":title, "Image_url":image_url})
 
-    mars_data = {"news_title":news_title, "news_text":news_p,"featured_image":image_url,
-                "mars_facts":mars_facts, "hemi_image_urls":hemisphere_image_urls}
+    mars_data = {"news_title":news_title, "news_text":news_p, "featured_image":featured_image_url , "mars_facts":mars_facts, "hemi_image_urls":hemisphere_image_urls}
 
     browser.quit()
 
     return mars_data
-   
+
