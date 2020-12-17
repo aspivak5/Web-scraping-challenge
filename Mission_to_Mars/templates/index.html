@@ -21,13 +21,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <h3>Featured Mars Image</h3>
-                    <img src="{{mars_data.featured_image}}" alt="image_url" width="100%"  style="float: left;">
+                <div class="col-md-8">
+                    <h4>Featured Mars Image</h4>
+                    <img src="{{mars_data.featured_image}}" alt="image_url" width="100%" height="90%"  style="float: left;">
                 </div>
-                <div class="col-md-6">
-                   <h4>Mars Facts</h4>
-                   {{mars_data.mars_facts}}
+                <div class="col-md-4">
+                   <h5>Mars Facts</h5>
+                   <div style=" margin-bottom: 100%; border-style: solid; border-color: black;">{{mars_data.mars_facts | safe}}</div>
                 </div>
             </div>
             <br>

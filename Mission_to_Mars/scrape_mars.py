@@ -35,7 +35,7 @@ def scrape_info():
     mars_facts = df[0]
     mars_facts.columns=["Description", "Mars"]
     mars_facts.set_index("Description", inplace=True)
-    mars_html = mars_facts.to_html()
+    mars_table = mars_facts.to_html(classes="table table-bordered")
 
     #scrape for hemispheres
     hemi_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -54,7 +54,7 @@ def scrape_info():
         image_url = "https://astrogeology.usgs.gov/" + soup.find("img", class_="wide-image")["src"]
         hemisphere_image_urls.append({"title":title, "Image_url":image_url})
 
-    mars_data = {"news_title":news_title, "news_text":news_p, "featured_image":featured_image_url , "mars_facts":mars_html, "hemi_image_urls":hemisphere_image_urls}
+    mars_data = {"news_title":news_title, "news_text":news_p, "featured_image":featured_image_url , "mars_facts":mars_table, "hemi_image_urls":hemisphere_image_urls}
 
     browser.quit()
 
