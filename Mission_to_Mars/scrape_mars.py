@@ -54,9 +54,12 @@ def scrape_info():
         image_url = "https://astrogeology.usgs.gov/" + soup.find("img", class_="wide-image")["src"]
         hemisphere_image_urls.append({"title":title, "Image_url":image_url})
 
+    #store mars_data in a dictionary
     mars_data = {"news_title":news_title, "news_text":news_p, "featured_image":featured_image_url , "mars_facts":mars_table, "hemi_image_urls":hemisphere_image_urls}
 
+ # Close the browser after scraping
     browser.quit()
 
+#return the results 
     return mars_data
 
